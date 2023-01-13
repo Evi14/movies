@@ -34,39 +34,25 @@ class User:
         return cls(results[0])
 
     @classmethod
+    def getUserEmail(cls):
+        query = "SELECT email FROM users;"
+        result = connectToMySQL(cls.db_name).query_db(query)
+        return result
+
+    @classmethod
     def get_by_id(cls,data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db_name).query_db(query,data)
         return cls(results[0])
-
-
     
     @staticmethod
     def is_valid(user):
         is_valid = True
-        if not NAME_REGEX.match(user['name']):
-            flash("Name should have only letters!", "fnameletter")
-            is_valid = False
-        if len(user['name']) < 2:
-            flash("Name should be at least 2 characters!", "fnamechar")
-            is_valid = False
-        is_valid = True
-        if not EMAIL_REGEX.match(user['email']): 
-            flash("Invalid email address!", "email")
-            is_valid = False
         query = "select count(email) from users where email = %(email)s;"
         result = connectToMySQL(db_name).query_db(query, user)
         if result[0]['count(email)'] >= 1:
-            flash("This email address already exists!", "emailExists")
+            # flash("This email address already exists!", "emailExists")
             is_valid = False
-        if len(user['password']) < 8:
-            flash("Password should be at least 8 characters!", "password")
-            is_valid = False
-        # if user['confirm'] != user['password']:
-        #     flash("Passwords don't match!", "passwordConfirm")
-        #     is_valid = False
-        
-        if is_valid == True:
-            flash("Success, user created!You can now login!", "userCreated")
-        
+        # if is_valid == True:
+            # flash("Success, user created!You can now login!", "userCreated")
         return is_valid

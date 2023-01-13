@@ -41,7 +41,7 @@
 						<!-- <img src="static/assets/img/logo.png" alt="logo" /> -->
 					</a>
 				</div>
-				<!-- <div class="header-right">
+				<div class="header-right">
 					<form action="#">
 						<select>
 							<option value="Movies">Movies</option>
@@ -52,10 +52,10 @@
 						<button><i class="icofont icofont-search"></i></button>
 					</form>
 					<ul>
-						<li><a href="#">Welcome Guest!</a></li>
-						<li><a class="login-popup" href="#">Login</a></li>
+						<li><a href="#">Welcome {{user.name}}!</a></li>
+						<!-- <li><a class="login-popup" href="#">Login</a></li> -->
 					</ul>
-				</div> -->
+				</div>
 				<div class="menu-area">
 					<div class="responsive-menu"></div>
 					<div class="mainmenu">
@@ -79,7 +79,6 @@
 					</div>
 				</div>
 			</div>
-			<h1 class="">Welcome {{user.name}}</h1>
 		</div>
 	</header>
 	<div class="buy-ticket">
@@ -94,6 +93,25 @@
 							<h6>Screen</h6>
 							<div class="ticket-box-table">
 								<table class="ticket-table-seat">
+									{% for order in all_orders %}
+									<div class="menus d-flex ftco-animate">
+										
+											<!-- <p>{{order.created_at}} {{order.size}} {{order.crust}} {{order.quantity}}</p> -->
+										<div class="menu-img img" style="background-image: url(static/images/bg_3t8.jpg);"></div>
+										<div class="text">
+											<div class="d-flex">
+												<div class="one-half">
+													<h3>{{order.created_at}}</h3>
+												</div>
+												<div class="one-forth">
+													<span class="price">${{order.price}}</span>
+												</div>
+											</div>
+											<p><span>{{order.size}}</span></p>
+										</div>
+										
+									</div>
+									{% endfor %}
 									<tr>
 										<td>1</td>
 										<td>1</td>

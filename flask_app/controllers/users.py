@@ -1,12 +1,17 @@
-from flask import render_template,redirect,session,request, flash
+from flask import render_template,redirect,session,request, flash, jsonify
 from flask_app import app
 from flask_app.models.user import User
+from flask_app.models import user
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/celebrities')
+def celebrities():
+    return render_template('celebrities.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -18,7 +23,7 @@ def login():
         flash("Invalid Email/Password", "invalidEmail")
         return redirect(request.referrer)
     if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
-        flash("Invalid Email/Password", "invalidEmail")
+        flash("Invalid Email/Password", "loginPassError")
         return redirect(request.referrer)
     session['user_id'] = user_in_db.id
     return redirect("/dashboard")
@@ -38,6 +43,17 @@ def register():
         session['user_id'] = id
         return redirect("/dashboard")
     return redirect("/")
+
+@app.route('/getUser')
+def getUser():
+    emails = user.User.getUserEmail()
+    return jsonify(emails)
+
+
+@app.route('/getUserLogin')
+def getUserLogin():
+    emails = user.User.getUserEmail()
+    return jsonify(emails)
 
 @app.route('/dashboard')
 def dashboard():
