@@ -1,8 +1,8 @@
 let formValidation = document.getElementById("formValidation");
 let formValidationLogin = document.getElementById("formValidationLogin");
 let is_valid = false;
-let login_validation = false;
-let pass_valid = false;
+let login_validation = true;
+let pass_valid = true;
 
 // REGISTER CHECKINGS
 function check_email() {
@@ -18,14 +18,14 @@ async function getUser(email) {
     fetch("http://127.0.0.1:5000/getUser")
         .then((response) => response.json())
         .then((data) => {
-        for (i = 0; i < data.length; i++) {
-            if (email == data[i]["email"]) {
-            document.getElementById("emailError").innerHTML = "This email already exists!*";
-            is_valid = false;
-            } else {
-            is_valid = true;
+            for (i = 0; i < data.length; i++) {
+                if (email == data[i]["email"]) {
+                    document.getElementById("emailError").innerHTML = "This email already exists!*";
+                    is_valid = false;
+                } else {
+                    is_valid = true;
+                }
             }
-        }
         });
     return is_valid;
 }
@@ -34,56 +34,68 @@ async function getUser(email) {
 function check_email_login() {
     let emailLogin = document.forms["formValidationLogin"]["email"].value;
     let regex = new RegExp("[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+.[a-zA-Z]");
-    if (!regex.test(emailLogin) && emailLogin.length != 0){
-        document.getElementById("emailErrorLogin").innerHTML = "Invalid email address!*";
-        login_validation = false;
-        // console.log(emailLogin.length)
-    } else if (getUserLogin(emailLogin)) {
-        document.getElementById("emailErrorLogin").innerHTML = "";
-        login_validation =true;
-    }
+    if (emailLogin.length == 0) {
+                document.getElementById("emailErrorLogin").innerHTML = "Email is required!*";
+                login_validation = true;
+            } else {
+                if (!regex.test(emailLogin) && emailLogin.length != 0) {
+                    document.getElementById("emailErrorLogin").innerHTML = "Invalid email address!*";
+                    login_validation = true;
+                }
+                else if (getUserLogin(emailLogin)) {
+                    if (document.getElementById("emailErrorLogin").innerHTML == ""){
+                        login_validation = false
+                    } else{
+                        document.getElementById("emailErrorLogin").innerHTML = "";
+                        login_validation = true;
+                    }
+                    
+                }
+            }
+    return login_validation;
 }
 
 async function getUserLogin(email) {
     fetch("http://127.0.0.1:5000/getUserLogin")
         .then((response) => response.json())
         .then((data) => {
-        for (i = 0; i < data.length; i++) {
-            if (email == data[i]["email"]) {
-            // is_valid = false;
-            break;
-            } 
-            else if (email.length != 0){
-            document.getElementById("emailErrorLogin").innerHTML = "This email doesn't exist! Register!*";
-            // is_valid = true;
-            login_validation = false;
-            } else {
-                document.getElementById("emailErrorLogin").innerHTML = "Please enter your email!*";
-                // is_valid = true;
-                login_validation = false;
+            for (i = 0; i < data.length; i++) {
+                if (email == data[i]["email"]) {
+                    break;
                 }
-        }
+                else if (email.length != 0) {
+                    document.getElementById("emailErrorLogin").innerHTML = "This email doesn't exist! Register!*";
+                    login_validation = true;
+                } else {
+                    document.getElementById("emailErrorLogin").innerHTML = "Please enter your email!*";
+                    login_validation = true;
+                }
+            }
         });
     return login_validation;
 }
 
 function check_pass_login() {
+    check_email_login();
     let loginPass = document.forms["formValidationLogin"]["password"].value;
-    console.log(loginPass.length);
-    if (loginPass.length == 0){
+
+    if (loginPass.length == 0) {
         document.getElementById("loginPassError").innerHTML = "Password is required!*";
         pass_valid = true;
     }
-    else{pass_valid = false;}
+    else { 
+            document.getElementById("loginPassError").innerHTML = "";
+            pass_valid = false; 
+        }
     return pass_valid;
 }
 
 // nuk lejon berjen submit te login nese fushat nuk jane plotesuar sipas kushteve
-$(document).ready(function() {
-    $('#formValidationLogin').submit(function(e) {
-        if (login_validation == false && pass_valid == true){
+$(document).ready(function () {
+    $('#formValidationLogin').submit(function (e) {
+        if ((login_validation == true && pass_valid == true) || (login_validation == true && pass_valid == false) || (login_validation == false && pass_valid == true)) {
             e.preventDefault();
-            
+
         }
         // or return false;
     });
