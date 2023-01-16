@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+	<!-- Favicon Icon -->
+	<link rel="icon" type="image/png" href="static/assets/img/favcion.png" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/bootstrap.min.css" media="all" />
+	<!-- Slick nav CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/slicknav.min.css" media="all" />
+	<!-- Iconfont CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/icofont.css" media="all" />
+	<!-- Owl carousel CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/owl.carousel.css">
+	<!-- Popup CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/magnific-popup.css">
+	<!-- Main style CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/style.css" media="all" />
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" type="text/css" href="static/assets/css/responsive.css" media="all" />
+</head>
+<body>
+    <!-- Page loader -->
+	<div id="preloader"></div>
+	<!-- header section start -->
+	<header class="header">
+		<div class="container">
+			<div class="header-area">
+				<div class="logo">
+					<a href="#">
+						<h1> MOVIES</h1>
+						<!-- <img src="static/assets/img/logo.png" alt="logo" /> -->
+					</a>
+				</div>
+				<div class="header-right">
+					<form action="#">
+						<select>
+							<option value="Movies">Movies</option>
+							<option value="Movies">Movies</option>
+							<option value="Movies">Movies</option>
+						</select>
+						<input type="text" />
+						<button><i class="icofont icofont-search"></i></button>
+					</form>
+					<ul class="mainmenu">
+						<li><a href="#">Welcome {{user.name}}!</a></li>
+						<li><a class="active" href="#">Admin Page</a></li>
+					</ul>
+				</div>
+				<div class="menu-area">
+					<div class="responsive-menu"></div>
+					<div class="mainmenu">
+						<ul id="primary-menu">
+							<li><a href="/admin">Home</a></li>
+							<li><a href="#">Edit Info</a></li>
+							<li><a href="/celebritiesAdmin">Celebrities List</a></li>
+							<!-- <li><a href="top-movies.html">Top Movies</a></li> -->
+							<li><a href="#" class="nav-link register-popup">Create New Movie</a></li>
+							<!-- <li><a href="#">Comming Soon <i class="icofont icofont-simple-down"></i></a>
+								<ul>
+									<li><a href="blog-details.html">Blog Details</a></li>
+									<li><a href="movie-details.html">Movie Details</a></li>
+								</ul>
+							</li> -->
+							<li><a href="#">Profile</a></li>
+							<!-- <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li> -->
+							<a class="theme-btn" href="/logout"><i class="icofont icofont-logout"></i> Logout</a>
+							<!-- <a class="theme-btn" href="#">register</a> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</header>
+    <div class="register-area">
+		<div class="register-box">
+			<a href="#"><i class="icofont icofont-close"></i></a>
+			<h2>Create New Movie</h2>
+			<form action="/create_movie" method="post" enctype="multipart/form-data">
+				<h6>TITLE</h6>
+				<!-- <input type="text" /> -->
+				<input type="text" class="form-control" name="title" placeholder="Title">
+				<h6>DESCRIPTION</h6>
+                <textarea name="description" class="form-control" id="" cols="30" rows="2"></textarea>
+				<!-- <input type="email" class="form-control" name="email" placeholder="Email"> -->
+				<h6>COVER PIC</h6>
+				<input type="file" class="form-control" name="cover_pic">
+				<h6>RELEASE DATE</h6>
+				<input type="date" class="form-control" name="release_date">
+				<h6>TRAILER</h6>
+				<input type="text" class="form-control" name="trailer" placeholder="YouTube trailer link">
+                <h6>STATUS</h6>
+				<select name="status" id="" class="form-control mb-2">
+					<option value="0">Coming Soon</option>
+					<option value="1">Released</option>
+				</select>
+				<h6>WRITER</h6>
+				<input type="text" class="form-control" name="writer" placeholder="Writer">
+				<h6>DIRECTOR</h6>
+				<input type="text" class="form-control" name="director" placeholder="Director">
+				<h6>MOVIE PROFILE</h6>
+				<select name="movie_profile" class="form-control mb-2">
+					<option value="Action">Action</option>
+					<option value="Thriller">Thriller</option>
+					<option value="Sci-Fi">Sci-Fi</option>
+					<option value="Horror">Horror</option>
+					<option value="Drama">Drama</option>
+					<option value="Romance">Romance</option>
+					<option value="Animation">Animation</option>
+				</select>
+				<!-- <input type="text" class="form-control" name="movie_profile" placeholder="Profile"> -->
+				<h6>DURATION</h6>
+				<input type="text" class="form-control" name="duration" placeholder="Duration">
+				<input type="submit" value="Create" class="theme-btn">
+			</form>
+		</div>
+	</div>
+	<section class="breadcrumb-area" style="background-image: url('../static/assets/img/breadcrumb.png');">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb-area-content">
+						<h1>All Movies</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- breadcrumb area end -->
+	<!-- portfolio section start -->
+	<section class="portfolio-area pt-60">
+			<div class="container">
+				<div class="row flexbox-center">
+					<div class="col-lg-6 text-center text-lg-left">
+					    <div class="section-title">
+							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+						</div>
+					</div>
+					<div class="col-lg-6 text-center text-lg-right">
+					    <div class="portfolio-menu">
+							<ul>
+								<li data-filter="*" class="active">Latest</li>
+								<li data-filter=".soon">Comming Soon</li>
+								<li data-filter=".top">Top Rated</li>
+								<li data-filter=".released">Recently Released</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<hr/>
+				{% if movies %}
+				<div class="row portfolio-item">
+					{% for movie in movies %}
+					<div class="col-lg-3 col-md-4 col-sm-6 soon released">
+						<div class="single-portfolio">
+							<div class="single-portfolio-img">
+								<img src="static/assets/img/{{movie.cover_pic}}" style="width: 255px; height: 318.75px; object-fit:cover;" alt="portfolio" />
+								<a href="{{movie.trailer}}" class="popup-youtube">
+									<i class="icofont icofont-ui-play"></i>
+								</a>
+							</div>
+							<div class="portfolio-content">
+								<a href="/movie_detail/{{movie.id}}"><h2>{{movie.title}}</h2></a>
+								<div class="review d-flex justify-content-between">
+									<div class="author-review">
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+									</div>
+									{% if user.role == 'admin' %}
+									<a href="/editMovie/{{movie.id}}" class="theme-btn">Edit</a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+		</section>
+	<!-- jquery main JS -->
+	<script src="static/assets/js/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="static/assets/js/bootstrap.min.js"></script>
+	<!-- Slick nav JS -->
+	<script src="static/assets/js/jquery.slicknav.min.js"></script>
+	<!-- owl carousel JS -->
+	<script src="static/assets/js/owl.carousel.min.js"></script>
+	<!-- Popup JS -->
+	<script src="static/assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- Isotope JS -->
+	<script src="static/assets/js/isotope.pkgd.min.js"></script>
+	<!-- main JS -->
+	<script src="static/assets/js/main.js"></script>
+</body>
+</html>

@@ -59,90 +59,71 @@
 						<div class="responsive-menu"></div>
 						<div class="mainmenu">
 							<ul id="primary-menu">
-								<li><a href="/">Home</a></li>
-								<li><a href="/celebrities" class="active">Celebrities</a></li>
-								<!-- <li><a href="movies.html">Movies</a></li>
-								
-								<li><a href="top-movies.html">Top Movies</a></li>
-								<li><a href="blog.html">News</a></li> -->
-								<li><a href="#">Comming Soon <i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="blog-details.html">Blog Details</a></li>
-										<li><a href="movie-details.html">Movie Details</a></li>
-									</ul>
-								</li>
-								<!-- <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li> -->
-								<a class="theme-btn login-popup" href="#"><i class="icofont icofont-login"></i> Login</a>
-								<!-- <a class="theme-btn" href="#">register</a> -->
-							</ul>
+                                <li><a href="/admin">Home</a></li>
+                                <li><a href="#">Edit Info</a></li>
+                                <li><a href="/celebritiesAdmin">Celebrities List</a></li>
+                                <!-- <li><a href="top-movies.html">Top Movies</a></li> -->
+                                <li><a href="/admin" class="nav-link">Create New Movie</a></li>
+                                <!-- <li><a href="#">Comming Soon <i class="icofont icofont-simple-down"></i></a>
+                                    <ul>
+                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                        <li><a href="movie-details.html">Movie Details</a></li>
+                                    </ul>
+                                </li> -->
+                                <li><a href="#">Profile</a></li>
+                                <!-- <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li> -->
+                                <a class="theme-btn" href="/logout"><i class="icofont icofont-logout"></i> Logout</a>
+                                <!-- <a class="theme-btn" href="#">register</a> -->
+                            </ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
-			<!-- Login Form -->
-	<div class="login-area">
-		<div class="login-box">
-			<a href="#"><i class="icofont icofont-close"></i></a>
-			<h2>LOGIN</h2>
-			<form action="/login" id="formValidationLogin" method="post" name="formValidationLogin">
-				<h6>EMAIL ADDRESS</h6>
-				<input type="text" class="form-control" name="email" placeholder="Email">
-				<p class="text-danger" id="emailErrorLogin"></p>
+        <div class="register-area">
+            <div class="register-box">
+                <a href="#"><i class="icofont icofont-close"></i></a>
+                <h2>Create New Movie</h2>
+                <form action="/create_movie" method="post" enctype="multipart/form-data">
+                    <h6>TITLE</h6>
+                    <!-- <input type="text" /> -->
+                    <input type="text" class="form-control" name="title" placeholder="Title">
+                    <h6>DESCRIPTION</h6>
+                    <textarea name="description" class="form-control" id="" cols="30" rows="2"></textarea>
+                    <!-- <input type="email" class="form-control" name="email" placeholder="Email"> -->
+                    <h6>COVER PIC</h6>
+                    <input type="file" class="form-control" name="cover_pic">
+                    <h6>RELEASE DATE</h6>
+                    <input type="date" class="form-control" name="release_date">
+                    <h6>TRAILER</h6>
+                    <input type="text" class="form-control" name="trailer" placeholder="YouTube trailer link">
+                    <h6>STATUS</h6>
+                    <select name="status" id="" class="form-control mb-2">
+                        <option value="0">Coming Soon</option>
+                        <option value="1">Released</option>
+                    </select>
+                    <h6>WRITER</h6>
+                    <input type="text" class="form-control" name="writer" placeholder="Writer">
+                    <h6>DIRECTOR</h6>
+                    <input type="text" class="form-control" name="director" placeholder="Director">
+                    <h6>MOVIE PROFILE</h6>
+                    <select name="movie_profile" class="form-control mb-2">
+                        <option value="Action">Action</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Animation">Animation</option>
+                    </select>
+                    <!-- <input type="text" class="form-control" name="movie_profile" placeholder="Profile"> -->
+                    <h6>DURATION</h6>
+                    <input type="text" class="form-control" name="duration" placeholder="Duration">
+                    <input type="submit" value="Create" class="theme-btn">
+                </form>
+            </div>
+        </div>
 
-				<h6>PASSWORD</h6>
-				<input type="password" class="form-control" id="loginPass" name="password" placeholder="Password" >
-				<p class="text-danger" id="loginPassError"></p>
-				<!-- {% with messages = get_flashed_messages(category_filter=['loginPassError']) %}
-										{% if messages %}
-										<div class="alert alert-danger" role="alert">
-											<strong>Flash</strong>
-												{% for message in messages %}
-												<p>{{message}}</p>
-												{% endfor %}
-										</div>
-										{% endif %}
-									{% endwith %} -->
-
-				<div class="login-signup">
-					<a href="#" class="nav-link active register-popup">Don't have an account? Register</a>
-				</div>
-				<!-- <a href="#" class="theme-btn">LOG IN</a> -->
-				<input type="submit" value="Login" class="theme-btn" onclick="check_pass_login()">
-				<!-- <span>Or Via Social</span>
-				<div class="login-social">
-					<a href="#"><i class="icofont icofont-social-facebook"></i></a>
-					<a href="#"><i class="icofont icofont-social-twitter"></i></a>
-					<a href="#"><i class="icofont icofont-social-linkedin"></i></a>
-					<a href="#"><i class="icofont icofont-social-google-plus"></i></a>
-					<a href="#"><i class="icofont icofont-camera"></i></a>
-				</div> -->
-			</form>
-		</div>
-	</div>
-	<!-- Register From -->
-	<div class="register-area">
-		<div class="register-box">
-			<a href="#"><i class="icofont icofont-close"></i></a>
-			<h2>Register</h2>
-			<form action="/register" id="formValidation" method="post" name="formValidation">
-				<h6>Name</h6>
-				<input type="text" class="form-control" name="name" placeholder="Name">
-	
-				<h6>EMAIL ADDRESS</h6>
-				<input type="email" class="form-control" name="email" placeholder="Email" onfocusout="check_email()">
-				<p class="text-danger" id="emailError"></p>
-
-				<h6>PASSWORD</h6>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-	
-				<h6>CONFIRM PASSWORD</h6>
-				<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
-				
-				<input type="submit" value="Register" class="theme-btn">
-			</form>
-		</div>
-	</div>
 	<!-- Tickets section -->
 	<div class="buy-ticket">
 		<div class="container">

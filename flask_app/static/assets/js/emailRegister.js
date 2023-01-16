@@ -59,11 +59,15 @@ async function getUserLogin(email) {
     fetch("http://127.0.0.1:5000/getUserLogin")
         .then((response) => response.json())
         .then((data) => {
+            console.log(data);
             for (i = 0; i < data.length; i++) {
+                console.log(i);
                 if (email == data[i]["email"]) {
+                    document.getElementById("emailErrorLogin").innerHTML = "";
+                    login_validation = false;
                     break;
                 }
-                else if (email.length != 0) {
+                else if (email.length != 0 && email != data[i]["email"]) {
                     document.getElementById("emailErrorLogin").innerHTML = "This email doesn't exist! Register!*";
                     login_validation = true;
                 } else {

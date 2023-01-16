@@ -45,6 +45,67 @@ class User:
         results = connectToMySQL(cls.db_name).query_db(query,data)
         return cls(results[0])
     
+    #ELDI
+    
+    @classmethod 
+    def create_movie(cls, data):
+        query = "INSERT INTO movies (title, description, writer, director, release_date, trailer, duration, profile, cover_pic, status) VALUES (%(title)s, %(description)s, %(writer)s, %(director)s, %(release_date)s, %(trailer)s, %(duration)s, %(movie_profile)s, %(cover_pic)s, %(status)s);"
+        print(query)
+        connectToMySQL(cls.db_name).query_db(query, data)
+    
+    @classmethod 
+    def get_all_movies(cls):
+        query = "SELECT * FROM movies ORDER BY created_at DESC;"
+        result = connectToMySQL(cls.db_name).query_db(query)
+        movies = []
+        for row in result:
+            movies.append(row)
+        print(movies[0]['title'])
+        return movies
+    
+    @classmethod
+    def get_movie_by_id(cls, data):
+        query = "SELECT * FROM movies WHERE id = %(movie_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query,data)
+        if results:
+            return results[0]
+        else:
+            return False
+
+    @classmethod
+    def updateMovie(cls, data):
+        query = "UPDATE movies SET title = %(title)s, writer = %(writer)s, director = %(director)s, release_date = %(release_date)s, trailer = %(trailer)s, duration = %(duration)s, profile = %(movie_profile)s, cover_pic = %(cover_pic)s WHERE id = %(movie_id)s;"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+
+    @classmethod
+    def addComment(cls, data):
+        query = "INSERT INTO comments (user_id, movie_id, comment) VALUES (%(id)s, %(movie_id)s, %(comment)s);"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+
+    @classmethod
+    def get_movie_comments(cls, data):
+        query = "SELECT * FROM comments WHERE movie_id = %(movie_id)s;"
+        result = connectToMySQL(cls.db_name).query_db(query, data)
+        comments = []
+        for row in result:
+            comments.append(row)
+        return comments
+
+    @classmethod
+    def addCelebrities(cls, data):
+        query = "INSERT INTO celebrities (movie_id, name, profile_pic) VALUES (%(movie_id)s, %(name)s, %(profile_pic)s);"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+    
+    @classmethod
+    def get_celebrities(cls):
+        query = "SELECT * FROM celebrities LEFT JOIN movies ON celebrities.movie_id = movies.id;"
+        result = connectToMySQL(cls.db_name).query_db(query)
+        celebrities = []
+        for row in result:
+            celebrities.append(row)
+        # print(celebrities)
+        return celebrities
+
     @staticmethod
     def is_valid(user):
         is_valid = True

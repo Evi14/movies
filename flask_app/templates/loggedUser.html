@@ -338,12 +338,12 @@
 				<div class="row hero-area-slide">
 					<div class="col-lg-6 col-md-5">
 						<div class="hero-area-content">
-							<img src="static/assets/img/slide2.png" alt="about" />
+							<img src="static/assets/img/{{movies[0].cover_pic}}" alt="about" />
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-7">
 						<div class="hero-area-content pr-50">
-							<h2>The Devil Princess</h2>
+							<h2>{{movies[0].title}}</h2>
 							<div class="review">
 								<div class="author-review">
 									<i class="icofont icofont-star"></i>
@@ -354,12 +354,17 @@
 								</div>
 								<h4>180k voters</h4>
 							</div>
-							<p>She is a devil princess from the demon world. She grew up sheltered by her parents and
-								doesn't really know how to be evil or any of the common actions, She is unable to cry
-								due to Keita's accidental first wish, despite needed for him to wish...</p>
+							<p>{{movies[0].description}}</p>
 							<h3>Cast:</h3>
 							<div class="slide-cast">
-								<div class="single-slide-cast">
+								{% for clebritie in clebrities %}
+										{% if movies[0].id == clebritie.movie_id %}
+											<div class="single-slide-cast">
+												<img src="../static/assets/img/{{clebritie.profile_pic}}" alt="about" />
+											</div>
+										{% endif %}
+									{% endfor %}
+								<!-- <div class="single-slide-cast">
 									<img src="static/assets/img/cast/cast1.png" alt="about" />
 								</div>
 								<div class="single-slide-cast">
@@ -379,7 +384,7 @@
 								</div>
 								<div class="single-slide-cast">
 									<img src="static/assets/img/cast/cast7.png" alt="about" />
-								</div>
+								</div> -->
 								<div class="single-slide-cast text-center">
 									5+
 								</div>
@@ -387,8 +392,8 @@
 							<div class="slide-trailor">
 								<div class="loggedUser">
 									<h3>Watch Trailer</h3>
-									<!-- <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
-									Tickets</a> -->
+									<a class="theme-btn theme-btn2" href="{{movies[0].trailer}}"><i class="icofont icofont-play"></i>
+									Trailer</a>
 									<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
 								</div>
 							</div>
@@ -398,12 +403,12 @@
 				<div class="row hero-area-slide">
 					<div class="col-lg-6 col-md-5">
 						<div class="hero-area-content">
-							<img src="static/assets/img/slide1.png" alt="about" />
+							<img src="static/assets/img/{{movies[1].cover_pic}}" alt="about" />
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-7">
 						<div class="hero-area-content pr-50">
-							<h2>Last Avatar</h2>
+							<h2>{{movies[1].title}}</h2>
 							<div class="review">
 								<div class="author-review">
 									<i class="icofont icofont-star"></i>
@@ -414,12 +419,17 @@
 								</div>
 								<h4>180k voters</h4>
 							</div>
-							<p>She is a devil princess from the demon world. She grew up sheltered by her parents and
-								doesn't really know how to be evil or any of the common actions, She is unable to cry
-								due to Keita's accidental first wish, despite needed for him to wish...</p>
+							<p>{{movies[1].description}}</p>
 							<h3>Cast:</h3>
 							<div class="slide-cast">
-								<div class="single-slide-cast">
+								{% for clebritie in clebrities %}
+										{% if movies[1].id == clebritie.movie_id %}
+											<div class="single-slide-cast">
+												<img src="../static/assets/img/{{clebritie.profile_pic}}" alt="about" />
+											</div>
+										{% endif %}
+									{% endfor %}
+								<!-- <div class="single-slide-cast">
 									<img src="static/assets/img/cast/cast1.png" alt="about" />
 								</div>
 								<div class="single-slide-cast">
@@ -439,7 +449,7 @@
 								</div>
 								<div class="single-slide-cast">
 									<img src="static/assets/img/cast/cast7.png" alt="about" />
-								</div>
+								</div> -->
 								<div class="single-slide-cast text-center">
 									5+
 								</div>
@@ -447,8 +457,8 @@
 							<div class="slide-trailor">
 								<div class="loggedUser">
 									<h3>Watch Trailer</h3>
-									<!-- <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
-									Tickets</a> -->
+									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
+									Tickets</a>
 									<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
 								</div>
 							</div>
@@ -458,12 +468,12 @@
 				<div class="row hero-area-slide">
 					<div class="col-lg-6 col-md-5">
 						<div class="hero-area-content">
-							<img src="static/assets/img/slide3.png" alt="about" />
+							<img src="static/assets/img/{{movies[2].cover_pic}}" alt="about" />
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-7">
 						<div class="hero-area-content pr-50">
-							<h2>The Deer God</h2>
+							<h2>{{movies[2].title}}</h2>
 							<div class="review">
 								<div class="author-review">
 									<i class="icofont icofont-star"></i>
@@ -474,12 +484,17 @@
 								</div>
 								<h4>180k voters</h4>
 							</div>
-							<p>She is a devil princess from the demon world. She grew up sheltered by her parents and
-								doesn't really know how to be evil or any of the common actions, She is unable to cry
-								due to Keita's accidental first wish, despite needed for him to wish...</p>
+							<p>{{movies[2].description}}</p>
 							<h3>Cast:</h3>
 							<div class="slide-cast">
-								<div class="single-slide-cast">
+								{% for clebritie in clebrities %}
+										{% if movies[2].id == clebritie.movie_id %}
+											<div class="single-slide-cast">
+												<img src="../static/assets/img/{{clebritie.profile_pic}}" alt="about" />
+											</div>
+										{% endif %}
+									{% endfor %}
+								<!-- <div class="single-slide-cast">
 									<img src="static/assets/img/cast/cast1.png" alt="about" />
 								</div>
 								<div class="single-slide-cast">
@@ -499,7 +514,7 @@
 								</div>
 								<div class="single-slide-cast">
 									<img src="static/assets/img/cast/cast7.png" alt="about" />
-								</div>
+								</div> -->
 								<div class="single-slide-cast text-center">
 									5+
 								</div>
@@ -521,12 +536,12 @@
 					<div class="row hero-area-slide">
 						<div class="col-lg-6">
 							<div class="hero-area-content">
-								<img src="static/assets/img/slide3.png" alt="about" />
+								<img src="static/assets/img/{{movies[2].cover_pic}}" alt="about" />
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="hero-area-content pr-50">
-								<h2>Last Avatar</h2>
+								<h2>{{movies[2].title}}</h2>
 								<div class="review">
 									<div class="author-review">
 										<i class="icofont icofont-star"></i>
@@ -537,12 +552,17 @@
 									</div>
 									<h4>180k voters</h4>
 								</div>
-								<p>She is a devil princess from the demon world. She grew up sheltered by her parents
-									and doesn't really know how to be evil or any of the common actions, She is unable
-									to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+								<p>{{movies[2].description}}</p>
 								<h3>Cast:</h3>
 								<div class="slide-cast">
-									<div class="single-slide-cast">
+									{% for clebritie in clebrities %}
+										{% if movies[2].id == clebritie.movie_id %}
+											<div class="single-slide-cast">
+												<img src="../static/assets/img/{{clebritie.profile_pic}}" alt="about" />
+											</div>
+										{% endif %}
+									{% endfor %}
+									<!-- <div class="single-slide-cast">
 										<img src="static/assets/img/cast/cast1.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
@@ -562,7 +582,7 @@
 									</div>
 									<div class="single-slide-cast">
 										<img src="static/assets/img/cast/cast7.png" alt="about" />
-									</div>
+									</div> -->
 									<div class="single-slide-cast text-center">
 										5+
 									</div>
@@ -583,12 +603,12 @@
 					<div class="row hero-area-slide">
 						<div class="col-lg-6">
 							<div class="hero-area-content">
-								<img src="static/assets/img/slide1.png" alt="about" />
+								<img src="static/assets/img/{{movies[1].cover_pic}}" alt="about" />
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="hero-area-content pr-50">
-								<h2>The Deer God</h2>
+								<h2>{{movies[1].title}}</h2>
 								<div class="review">
 									<div class="author-review">
 										<i class="icofont icofont-star"></i>
@@ -599,12 +619,17 @@
 									</div>
 									<h4>180k voters</h4>
 								</div>
-								<p>She is a devil princess from the demon world. She grew up sheltered by her parents
-									and doesn't really know how to be evil or any of the common actions, She is unable
-									to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+								<p>{{movies[1].description}}</p>
 								<h3>Cast:</h3>
 								<div class="slide-cast">
-									<div class="single-slide-cast">
+									{% for clebritie in clebrities %}
+										{% if movies[1].id == clebritie.movie_id %}
+											<div class="single-slide-cast">
+												<img src="../static/assets/img/{{clebritie.profile_pic}}" alt="about" />
+											</div>
+										{% endif %}
+									{% endfor %}
+									<!-- <div class="single-slide-cast">
 										<img src="static/assets/img/cast/cast1.png" alt="about" />
 									</div>
 									<div class="single-slide-cast">
@@ -624,7 +649,7 @@
 									</div>
 									<div class="single-slide-cast">
 										<img src="static/assets/img/cast/cast7.png" alt="about" />
-									</div>
+									</div> -->
 									<div class="single-slide-cast text-center">
 										5+
 									</div>

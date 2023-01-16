@@ -58,7 +58,12 @@
 		$('.register-area').hide();
 		return false;
 	});
-	
+	// New Movie
+	$('.movie-popup').on('click', function () {
+		$('.movie-area').show();
+		$('.movie-area').hide();
+		return false;
+	});
 	/*----------------------------
     START - Slider activation
     ------------------------------ */
