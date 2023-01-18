@@ -11,7 +11,7 @@ class Movie:
 
     @classmethod
     def get_movie(cls):
-            query = "select * from movies order by release_date DESC;"
+            query = "SELECT * FROM movies order by created_at DESC;"
             results =  connectToMySQL(cls.db_name).query_db(query)
             movies= []
             for row in results:
@@ -49,7 +49,7 @@ class Movie:
 
     @classmethod
     def get_coming_movies(cls):
-        query = 'SELECT   * FROM  movies where status= "1" order by release_date DESC;'
+        query = 'SELECT   * FROM  movies where status= "0" order by created_at DESC;'
         results = connectToMySQL(cls.db_name).query_db(query)
         comingMovies = []
         for row in results:

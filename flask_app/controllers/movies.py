@@ -37,6 +37,7 @@ def addFavoriteMovie(movie_id,movie_status):
     Movie.addFavoriteMovie(data)
     return redirect(request.referrer)
 
+    
 @app.route('/unfavorite/<int:movie_id>/<movie_status>')
 def removeFavoriteMovie(movie_id,movie_status):
     if 'user_id' not in session:

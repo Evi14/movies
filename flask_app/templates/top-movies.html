@@ -32,30 +32,55 @@
 	    <div id="preloader"></div>
 		<!-- header section start -->
 		<header class="header">
-			<div class="container">
-				<div class="header-area">
+		<div class="container">
+			<div class="header-area">
+				<div class="logo">
 					<a href="#">
 						<h1> MOVIES</h1>
-						<!-- <img src="static/assets/img/logo.png" alt="logo" /> -->
+						<img src="static/assets/img/logo.png" alt="logo" />
 					</a>
-					
-					<div class="menu-area">
-						<div class="responsive-menu"></div>
-					    <div class="mainmenu">
-                            <ul id="primary-menu">
-                                <li><a  href="/">Home</a></li>
-                                
-                                <li><a href="/celebrities">CelebritiesList</a></li>
-                                <li><a class="active" href="/top-movies">Top Movies</a></li>
-                                <li><a href="/aboutUs">About us</a></li>
-                                <li><a href="/profile">Profile</a></li>
-								
-                            </ul>
-					    </div>
+				</div>
+				<div class="header-right">
+					<form action="#">
+						<select>
+							<option value="Movies">Movies</option>
+							<option value="Movies">Movies</option>
+							<option value="Movies">Movies</option>
+						</select>
+						<input type="text" />
+						<button><i class="icofont icofont-search"></i></button>
+					</form>
+					<ul class="mainmenu">
+						<li><a href="#">Welcome {{user.name}}!</a></li>
+						<!-- <li><a class="active" href="#">Admin Page</a></li> -->
+					</ul>
+				</div>
+				<div class="menu-area">
+					<div class="responsive-menu"></div>
+					<div class="mainmenu">
+						<ul id="primary-menu">
+							<li><a href="/">Home</a></li>
+							<li><a href="/top-movies" class="active">Movies</a></li>
+							<li><a href="/celebritiesAdmin">Celebrities List</a></li>
+							<!-- <li><a href="top-movies.html">Top Movies</a></li> -->
+							<!-- <li><a href="#" class="nav-link register-popup">Create New Movie</a></li> -->
+							<!-- <li><a href="#">Comming Soon <i class="icofont icofont-simple-down"></i></a>
+								<ul>
+									<li><a href="blog-details.html">Blog Details</a></li>
+									<li><a href="movie-details.html">Movie Details</a></li>
+								</ul>
+							</li> -->
+							<li><a href="#">Profile</a></li>
+							<!-- <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li> -->
+							<a class="theme-btn" href="/logout"><i class="icofont icofont-logout"></i> Logout</a>
+							<!-- <a class="theme-btn" href="#">register</a> -->
+						</ul>
 					</div>
 				</div>
 			</div>
-		</header>
+			
+		</div>
+	</header>
 		<div class="login-area">
 			<div class="login-box">
 				<a href="#"><i class="icofont icofont-close"></i></a>
@@ -105,7 +130,6 @@
 					<div class="col-lg-6 text-center text-lg-left">
 					    <div class="section-title">
 							<h1><i class="icofont icofont-movie"></i> Spotlight This Month </h1>
-                           
 						</div>
 					</div>
 					<div class="col-lg-6 text-center text-lg-right">
@@ -121,39 +145,42 @@
 				</div>
 				<hr />
 				<div class="row portfolio-item">
-                    {%for m in movies%}
+                    {% for movie in movies %}
 					<div class="col-lg-3 col-md-4 col-sm-6 all">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img src="static/assets/img/portfolio/{{m.cover_pic}}" alt="portfolio" />
-								<a href="{{m.trailer}}" class="popup-youtube">
+								<img src="static/assets/img/{{movie.cover_pic}}" style="width: 255px; height: 318.75px; object-fit:cover;" alt="portfolio" />
+								<a href="{{movie.trailer}}" class="popup-youtube">
 									<i class="icofont icofont-ui-play"></i>
 								</a>
 							</div>
 							<div class="portfolio-content">
-								<h2>{{m.title}}</h2>
-								<div class="review">
+								<a href="/movie_detail/{{movie.id}}"><h2>{{movie.title}}</h2></a>
+								<div class="review d-flex justify-content-between">
 									<div class="author-review">
-                                    {% if m.id not in favMoviesId %}
-									<a class="theme-btn theme-btn2" href="/favorite/{{m.id}}/{{m.status}}"> favorite</a>
-                                    {%endif%}
-                                    {% if m.id in favMoviesId %}
-                                    <a class="theme-btn theme-btn2" href="/unfavorite/{{m.id}}/{{m.status}}"> unfavorite</a>
-                                    {%endif%}
-                                    
-                                    
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
+										<i class="icofont icofont-star"></i>
 									</div>
-									
+									{% if movie.id not in favMoviesId %}
+										<a class="theme-btn theme-btn2" href="/favorite/{{movie.id}}/{{movie.status}}"> favorite</a>
+                                        {%endif%}
+                                        {% if movie.id in favMoviesId%}
+                                        <a class="theme-btn theme-btn2" href="/unfavorite/{{movie.id}}/{{movie.status}}"> unfavorite</a>
+                                    {%endif%}
 								</div>
 							</div>
 						</div>
 					</div>
-                    {%endfor%}
+					{% endfor %}
+
                     {%for c in coming%}
 					<div class="col-lg-3 col-md-4 col-sm-6 soon">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img src="assets/img/portfolio/{{c.cover_pic}}" alt="portfolio" />
+								<img src="../static/assets/img/{{c.cover_pic}}" alt="portfolio" />
 								<a href="{{c.trailer}}" class="popup-youtube">
 									<i class="icofont icofont-ui-play"></i>
 								</a>
@@ -180,7 +207,7 @@
 					<div class="col-lg-3 col-md-4 col-sm-6 top ">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img src="assets/img/portfolio/{{r.cover_pic}}" alt="portfolio" />
+								<img src="../static/assets/img/{{r.cover_pic}}" alt="portfolio" />
 								<a href="{{r.trailer}}" class="popup-youtube">
 									<i class="icofont icofont-ui-play"></i>
 								</a>
@@ -208,7 +235,7 @@
 					<div class="col-lg-3 col-md-4 col-sm-6 fav">
 						<div class="single-portfolio">
 							<div class="single-portfolio-img">
-								<img src="assets/img/portfolio/{{f.cover_pic}}" alt="portfolio" />
+								<img src="../static/assets/img/{{f.cover_pic}}" alt="portfolio" />
 								<a href="{{f.trailer}}" class="popup-youtube">
 									<i class="icofont icofont-ui-play"></i>
 								</a>

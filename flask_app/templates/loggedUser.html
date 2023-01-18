@@ -38,7 +38,7 @@
 				<div class="logo">
 					<a href="#">
 						<h1> MOVIES</h1>
-						<!-- <img src="static/assets/img/logo.png" alt="logo" /> -->
+						<img src="static/assets/img/logo.png" alt="logo" />
 					</a>
 				</div>
 				<div class="header-right">
@@ -61,8 +61,8 @@
 					<div class="mainmenu">
 						<ul id="primary-menu">
 							<li><a class="active" href="/dashboard">Home</a></li>
-							<!-- <li><a href="movies.html">Movies</a></li>
-							<li><a href="celebrities.html">CelebritiesList</a></li>
+							<li><a href="/top-movies">Movies</a>
+							<!-- <li><a href="celebrities.html">CelebritiesList</a></li>
 							<li><a href="top-movies.html">Top Movies</a></li>
 							<li><a href="blog.html">News</a></li> -->
 							<li><a href="#">Comming Soon <i class="icofont icofont-simple-down"></i></a>
@@ -339,11 +339,14 @@
 					<div class="col-lg-6 col-md-5">
 						<div class="hero-area-content">
 							<img src="static/assets/img/{{movies[0].cover_pic}}" alt="about" />
+							<!-- <a href="{{movies[0].trailer}}" class="popup-youtube">
+								<i class="icofont icofont-ui-play"></i>
+							</a> -->
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-7">
 						<div class="hero-area-content pr-50">
-							<h2>{{movies[0].title}}</h2>
+							<h2><a href="/"></a>{{movies[0].title}}</h2>
 							<div class="review">
 								<div class="author-review">
 									<i class="icofont icofont-star"></i>
@@ -361,6 +364,7 @@
 										{% if movies[0].id == clebritie.movie_id %}
 											<div class="single-slide-cast">
 												<img src="../static/assets/img/{{clebritie.profile_pic}}" alt="about" />
+												
 											</div>
 										{% endif %}
 									{% endfor %}
@@ -391,9 +395,9 @@
 							</div>
 							<div class="slide-trailor">
 								<div class="loggedUser">
-									<h3>Watch Trailer</h3>
+									<!-- <h3>Watch Trailer</h3>
 									<a class="theme-btn theme-btn2" href="{{movies[0].trailer}}"><i class="icofont icofont-play"></i>
-									Trailer</a>
+									Trailer</a> -->
 									<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
 								</div>
 							</div>
@@ -456,9 +460,9 @@
 							</div>
 							<div class="slide-trailor">
 								<div class="loggedUser">
-									<h3>Watch Trailer</h3>
+									<!-- <h3>Watch Trailer</h3>
 									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
-									Tickets</a>
+									Tickets</a> -->
 									<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
 								</div>
 							</div>
@@ -521,7 +525,7 @@
 							</div>
 							<div class="slide-trailor">
 								<div class="loggedUser">
-									<h3>Watch Trailer</h3>
+									<!-- <h3>Watch Trailer</h3> -->
 									<!-- <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
 									Tickets</a> -->
 									<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
@@ -589,7 +593,7 @@
 								</div>
 								<div class="slide-trailor">
 									<div class="loggedUser">
-										<h3>Watch Trailer</h3>
+										<!-- <h3>Watch Trailer</h3> -->
 										<!-- <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
 										Tickets</a> -->
 										<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
@@ -656,7 +660,7 @@
 								</div>
 								<div class="slide-trailor">
 									<div class="loggedUser">
-										<h3>Watch Trailer</h3>
+										<!-- <h3>Watch Trailer</h3> -->
 										<!-- <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i>
 										Tickets</a> -->
 										<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>

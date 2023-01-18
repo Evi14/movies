@@ -23,6 +23,8 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
+    if 'user_id' in session:
+        return redirect('/dashboard')
     movies  = User.get_all_movies()
     clebrities = User.get_celebrities()
     return render_template('index.html', movies = movies, clebrities = clebrities)
@@ -40,8 +42,8 @@ def celebritiesAdmin():
         'id': session['user_id']
     }
     user = User.get_by_id(data)
-    print(user.role)
-    if user.role == "admin":
+    print(user['role'])
+    if user['role'] == "admin":
         celebrities = User.get_celebrities()
         return render_template('celebAdmin.html', celebrities = celebrities)
     else:
@@ -118,8 +120,7 @@ def admin():
         'id': session['user_id']
     }
     user = User.get_by_id(data)
-    print(user.role)
-    if user.role != "admin":
+    if user['role'] != "admin":
         return redirect('/logout')
     movies  = User.get_all_movies()
     return render_template('admin.html', user = user, movies = movies)
@@ -132,7 +133,7 @@ def create_movie():
         'id': session['user_id']
     }
     user = User.get_by_id(data)
-    if user.role != "admin":
+    if user['role'] != "admin":
         return redirect('/logout')
     data['title'] = request.form['title']
     data['description'] = request.form['description']
@@ -167,8 +168,8 @@ def movie_detail(id):
         'id': session['user_id']
     }
     user = User.get_by_id(data)
-    if user.role != "admin":
-        return redirect('/logout')
+    # if user['role'] != "admin":
+    #     return redirect('/logout')
     data['movie_id'] = id
     movie = User.get_movie_by_id(data)
     comments = User.get_movie_comments(data)
@@ -192,7 +193,7 @@ def edit_page(id):
         'id': session['user_id']
     }
     user = User.get_by_id(data)
-    if user.role != "admin":
+    if user['role'] != "admin":
         return redirect('/logout')
     
     data['movie_id'] = id
@@ -210,7 +211,7 @@ def updateMovie(id):
         'movie_id': id
     }
     user = User.get_by_id(data)
-    if user.role != "admin":
+    if user['role'] != "admin":
         return redirect('/logout')
     movie = User.get_movie_by_id(data)
     data['title'] = request.form['title']
@@ -251,6 +252,8 @@ def updateMovie(id):
 def addComment(movie_id):
     if 'user_id' not in session:
         return redirect('/logout')
+    if request.form['comment'] == '':
+        return redirect(request.referrer)
     data ={
         'id': session['user_id'],
         'movie_id': movie_id,
@@ -271,15 +274,17 @@ def topMovies():
     if 'user_id' not in session:
         return redirect('/logout')
     data={
-        'user_id':session['user_id']
+        'user_id':session['user_id'],
+        'id':session['user_id']
     }
+    user = User.get_by_id(data)
     movies=Movie.get_movie()
     today = date.today()
     fav=Movie.get_user_favorite_movies(data)
     rated=Movie.get_rated_movies()
     coming=Movie.get_coming_movies()
     favMoviesId=Movie.get_user_favorite_moviesID(data)
-    return render_template('top-movies.html', movies=movies, fav=fav, rated=rated,coming=coming, favMoviesId=favMoviesId)
+    return render_template('top-movies.html', movies=movies, fav=fav, user = user, rated=rated,coming=coming, favMoviesId=favMoviesId)
 
 
 @app.route('/addCelebrities/<int:movie_id>', methods = ['POST'])
@@ -292,7 +297,7 @@ def addCelebrities(movie_id):
         'name': request.form['name']
     }
     user = User.get_by_id(data)
-    if user.role != "admin":
+    if user['role'] != "admin":
         return redirect('/logout')
     file = request.files['profile_pic']
     if file and allowed_file(file.filename):
@@ -303,4 +308,51 @@ def addCelebrities(movie_id):
     User.addCelebrities(data)
     return redirect(request.referrer)
 
+@app.route('/book_tickets/<string:movie_id>', methods = ['POST'])
+def book_tickets(movie_id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data ={
+        'id': session['user_id'],
+        'movie_id': int(movie_id),
+    }
+    print(data)
+    array = []
+    print(request.form)
     
+    # for row in request.form:
+    #     array.append(row)
+    # print(array)
+    for row in array:
+        data['seat'] = row
+        User.book_tickets(data)
+    return redirect(request.referrer)
+
+@app.route('/favorite/<int:movie_id>/<string:movie_status>')
+def addFavoriteMovie(movie_id,movie_status):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data={
+        'id':session['user_id'] ,
+        'movie_id': movie_id,
+        'movie_status': movie_status
+
+    }
+    print(data)
+    Movie.addFavoriteMovie(data)
+    return redirect(request.referrer)
+
+    
+@app.route('/unfavorite/<int:movie_id>/<movie_status>')
+def removeFavoriteMovie(movie_id,movie_status):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    print(movie_id,movie_status)
+    data={
+        'id': session['user_id'],
+        'movie_id': movie_id,
+        'movie_status': movie_status
+
+    }
+    Movie.removeFavoriteMovie(data)
+    return redirect(request.referrer)

@@ -1,3 +1,4 @@
+let form = [];
 (function ($) {
 	"use strict";
 	
@@ -192,3 +193,78 @@
 	
 
 }(jQuery));
+
+let tickets = []
+
+function changeCol(e) {
+	// console.log(document.getElementsByClassName("tickets").length);
+	if (document.getElementsByClassName("tickets").length < 5 && e.classList.contains('tickets') == false) {
+		document.getElementById("error").innerHTML = "";
+		tickets.push(e.innerHTML);
+		e.classList.add("active");
+		e.classList.add("tickets");
+		// console.log(tickets);
+	}
+	else if (e.classList.contains('tickets') == true) {
+		e.classList.remove("active");
+		e.classList.remove("tickets");
+		for(let i = 0; i < tickets.length; i++){
+			if(tickets[i] == e.innerHTML){
+				tickets.splice(i, 1)
+			}
+		}
+		// tickets.splice(e.innerHTML)
+	}
+	if (document.getElementsByClassName("tickets").length > 5) {
+	document.getElementById("error").innerHTML ="*You can not select more than 5 tickets";
+		e.classList.remove("active");
+    e.classList.remove("tickets");
+	tickets.push(e.innerHTML)
+	}
+	
+}
+
+// console.log(tickets);
+// var form = new Array(tickets);
+// console.log(form);
+async function book_tickets() {
+		let movie_id = document.getElementById('movie').innerHTML;
+		// var form = new Array(tickets.length);
+		let form = tickets;
+		console.log(form);
+		// console.log(all);
+		fetch("http://127.0.0.1:5000/book_tickets/"+movie_id, {
+		method: "POST",
+		body: form,
+		})
+		.then((response) => response.json())
+		.then((data) => console.log(data));
+		document.getElementById("error").innerHTML =
+		"*Tickets are succesfully booked";
+		setTimeout(location.reload.bind(location), 5000);
+		return form;
+};
+
+function booking(){
+	let form = tickets;
+	let movie_id = document.getElementById('movie').innerHTML;
+	console.log(form);
+	console.log(movie_id);
+	document.getElementById("error").innerHTML = "*Tickets are succesfully booked";
+}
+
+async function getUser(email) {
+    fetch("http://127.0.0.1:5000/getUser")
+        .then((response) => response.json())
+        .then((data) => {
+            for (i = 0; i < data.length; i++) {
+                if (email == data[i]["email"]) {
+                    document.getElementById("emailError").innerHTML = "This email already exists!*";
+                    is_valid = false;
+                } else {
+                    is_valid = true;
+                }
+            }
+        });
+    return is_valid;
+}

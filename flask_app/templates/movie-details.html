@@ -1,33 +1,34 @@
-<!DOCTYPE HTML>
-<html lang="zxx">
+<!DOCTYPE html>
+<html lang="en">
 	
 <head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Moviepoint - Online Movie,Vedio and TV Show HTML Template</title>
-		<!-- Favicon Icon -->
-		<link rel="icon" type="image/png" href="assets/img/favcion.png" />
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
-		<!-- Slick nav CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
-		<!-- Iconfont CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
-		<!-- Owl carousel CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-		<!-- Popup CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-		<!-- Main style CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all" />
-		<!-- Responsive CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Moviepoint - Online Movie,Vedio and TV Show HTML Template</title>
+	<!-- Favicon Icon -->
+	<link rel="icon" type="image/png" href="static/assets/img/favcion.png" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/bootstrap.min.css" media="all" />
+	<!-- Slick nav CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/slicknav.min.css" media="all" />
+	<!-- Iconfont CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/icofont.css" media="all" />
+	<!-- Owl carousel CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/owl.carousel.css">
+	<!-- Popup CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/magnific-popup.css">
+	<!-- Main style CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/style.css" media="all" />
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" type="text/css" href="../static/assets/css/responsive.css" media="all" />
+	
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
 		<!-- Page loader -->
 	    <div id="preloader"></div>
 		<!-- header section start -->
@@ -35,7 +36,10 @@
 			<div class="container">
 				<div class="header-area">
 					<div class="logo">
-						<a href="index-2.html"><img src="assets/img/logo.png" alt="logo" /></a>
+						<a href="#">
+							<h1> MOVIES</h1>
+							<img src="../static/assets/img/logo.png" alt="logo" />
+						</a>
 					</div>
 					<div class="header-right">
 						<form action="#">
@@ -48,16 +52,18 @@
 							<button><i class="icofont icofont-search"></i></button>
 						</form>
 						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
+							<li><a href="#">Welcome {{user.name}}!</a></li>
+							{% if user.role == 'admin' %}
+							<li><a href="/admin">Admin Page</a></li>
+							{% endif %}
 						</ul>
 					</div>
 					<div class="menu-area">
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a class="active" href="index-2.html">Home</a></li>
-                                <li><a href="movies.html">Movies</a></li>
+                                <li><a class="active" href="/">Home</a></li>
+                                <li><a href="/top-movies">Movies</a></li>
                                 <li><a href="celebrities.html">CelebritiesList</a></li>
                                 <li><a href="top-movies.html">Top Movies</a></li>
                                 <li><a href="blog.html">News</a></li>
@@ -67,7 +73,7 @@
 										<li><a class="active" href="movie-details.html">Movie Details</a></li>
 									</ul>
 								</li>
-                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
+							</div>
                             </ul>
 					    </div>
 					</div>
@@ -116,113 +122,49 @@
 								<div class="ticket-box-table">
 									<table class="ticket-table-seat">
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td onclick="changeCol(this)">1</td>
+											<td onclick="changeCol(this)">2</td>
+											<td onclick="changeCol(this)">3</td>
+											<td onclick="changeCol(this)">4</td>
+											<td onclick="changeCol(this)">5</td>
+											<td onclick="changeCol(this)">6</td>
+											<td onclick="changeCol(this)">7</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td onclick="changeCol(this)">8</td>
+											<td onclick="changeCol(this)">9</td>
+											<td onclick="changeCol(this)">10</td>
+											<td onclick="changeCol(this)">11</td>
+											<td onclick="changeCol(this)">12</td>
+											<td onclick="changeCol(this)">13</td>
+											<td onclick="changeCol(this)">14</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td onclick="changeCol(this)">15</td>
+											<td onclick="changeCol(this)">16</td>
+											<td onclick="changeCol(this)">17</td>
+											<td onclick="changeCol(this)">18</td>
+											<td onclick="changeCol(this)">19</td>
+											<td onclick="changeCol(this)">20</td>
+											<td onclick="changeCol(this)">21</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td onclick="changeCol(this)">22</td>
+											<td onclick="changeCol(this)">23</td>
+											<td onclick="changeCol(this)">24</td>
+											<td onclick="changeCol(this)">25</td>
+											<td onclick="changeCol(this)">26</td>
+											<td onclick="changeCol(this)">27</td>
+											<td onclick="changeCol(this)">28</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-									<table>
-										<tr>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>5</td>
-										</tr>
-									</table>
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td onclick="changeCol(this)">29</td>
+											<td onclick="changeCol(this)">30</td>
+											<td onclick="changeCol(this)">31</td>
+											<td onclick="changeCol(this)">32</td>
+											<td onclick="changeCol(this)">33</td>
+											<td onclick="changeCol(this)">34</td>
+											<td onclick="changeCol(this)">35</td>
 										</tr>
 									</table>
 									<table>
@@ -244,49 +186,113 @@
 									</table>
 									<table class="ticket-table-seat">
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td onclick="changeCol(this)">36</td>
+											<td onclick="changeCol(this)">37</td>
+											<td onclick="changeCol(this)">38</td>
+											<td onclick="changeCol(this)">39</td>
+											<td onclick="changeCol(this)">40</td>
+											<td onclick="changeCol(this)">41</td>
+											<td onclick="changeCol(this)">42</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">43</td>
+											<td onclick="changeCol(this)">44</td>
+											<td onclick="changeCol(this)">45</td>
+											<td onclick="changeCol(this)">46</td>
+											<td onclick="changeCol(this)">47</td>
+											<td onclick="changeCol(this)">48</td>
+											<td onclick="changeCol(this)">49</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">50</td>
+											<td onclick="changeCol(this)">51</td>
+											<td onclick="changeCol(this)">52</td>
+											<td onclick="changeCol(this)">53</td>
+											<td onclick="changeCol(this)">54</td>
+											<td onclick="changeCol(this)">55</td>
+											<td onclick="changeCol(this)">56</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">57</td>
+											<td onclick="changeCol(this)">58</td>
+											<td onclick="changeCol(this)">59</td>
+											<td onclick="changeCol(this)">60</td>
+											<td onclick="changeCol(this)">61</td>
+											<td onclick="changeCol(this)">62</td>
+											<td onclick="changeCol(this)">63</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">64</td>
+											<td onclick="changeCol(this)">65</td>
+											<td onclick="changeCol(this)">66</td>
+											<td onclick="changeCol(this)">67</td>
+											<td onclick="changeCol(this)">68</td>
+											<td onclick="changeCol(this)">69</td>
+											<td onclick="changeCol(this)">70</td>
+										</tr>
+									</table>
+									<table>
+										<tr>
 											<td>1</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td>2</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td>3</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td>4</td>
 										</tr>
 										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
+											<td>5</td>
+										</tr>
+									</table>
+									<table class="ticket-table-seat">
+										<tr>
+											<td onclick="changeCol(this)">71</td>
+											<td onclick="changeCol(this)">72</td>
+											<td onclick="changeCol(this)">73</td>
+											<td onclick="changeCol(this)">74</td>
+											<td onclick="changeCol(this)">75</td>
+											<td onclick="changeCol(this)">76</td>
+											<td onclick="changeCol(this)">77</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">78</td>
+											<td onclick="changeCol(this)">79</td>
+											<td onclick="changeCol(this)">80</td>
+											<td onclick="changeCol(this)">81</td>
+											<td onclick="changeCol(this)">82</td>
+											<td onclick="changeCol(this)">83</td>
+											<td onclick="changeCol(this)">84</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">85</td>
+											<td onclick="changeCol(this)">86</td>
+											<td onclick="changeCol(this)">87</td>
+											<td onclick="changeCol(this)">88</td>
+											<td onclick="changeCol(this)">89</td>
+											<td onclick="changeCol(this)">90</td>
+											<td onclick="changeCol(this)">91</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">92</td>
+											<td onclick="changeCol(this)">93</td>
+											<td onclick="changeCol(this)">94</td>
+											<td onclick="changeCol(this)">95</td>
+											<td onclick="changeCol(this)">96</td>
+											<td onclick="changeCol(this)">97</td>
+											<td onclick="changeCol(this)">98</td>
+										</tr>
+										<tr>
+											<td onclick="changeCol(this)">99</td>
+											<td onclick="changeCol(this)">100</td>
+											<td onclick="changeCol(this)">101</td>
+											<td onclick="changeCol(this)">102</td>
+											<td onclick="changeCol(this)">103</td>
+											<td onclick="changeCol(this)">104</td>
+											<td onclick="changeCol(this)">105</td>
 										</tr>
 									</table>
 								</div>
@@ -298,8 +304,11 @@
 									<input type="checkbox" />
 									<span>Selected</span>
 								</div>
-								<a href="#" class="theme-btn">previous</a>
-								<a href="#" class="theme-btn">Next</a>
+								<div>
+									<small class="text-success" id="error"></small>
+								</div>
+								<!-- <a href="#" class="theme-btn">previous</a> -->
+								<input type="submit" class="theme-btn text-danger" value="Book Tickets" onclick="booking()">
 							</div>
 						</div>
 						<div class="col-lg-3 offset-lg-1">
@@ -312,11 +321,11 @@
 									</li>
 									<li>
 										<p>TIME</p>
-										<span>2018.07.09   20:40</span>
+										<span>{{movie.release_date}}</span>
 									</li>
 									<li>
 										<p>Movie name</p>
-										<span>Home Alone</span>
+										<span>{{movie.title}}</span>
 									</li>
 									<li>
 										<p>Ticket number</p>
@@ -332,9 +341,9 @@
 					</div>
 				</div>
 			</div>
-		</div><!-- header section end -->
+		</div> <!-- header section end -->
 		<!-- breadcrumb area start -->
-		<section class="breadcrumb-area">
+		<section class="breadcrumb-area" style="background-image: url(../static/assets/img/{{movie.cover_pic}});">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -352,20 +361,21 @@
 					<div class="row flexbox-center">
 						<div class="col-lg-5 text-lg-left text-center">
 							<div class="transformers-content">
-								<img src="assets/img/slide2.png" alt="about" />
+								<img src="../static/assets/img/{{movie.cover_pic}}" alt="about" />
 							</div>
 						</div>
 						<div class="col-lg-7">
 							<div class="transformers-content">
-								<h2>The Transformers</h2>
-								<p>3D | Animation | Action | Sci-Fi</p>
+								<h2>{{movie.title}}</h2>
+								<small style="display: none;" id="movie">{{movie.id}}</small>
+								<p>3D | Animation | {{movie.profile}}</p>
 								<ul>
 									<li>
 										<div class="transformers-left">
 											Movie:
 										</div>
 										<div class="transformers-right">
-											<a href="#">Sci-Fic</a>
+											<a href="#">{{movie.profile}}</a>
 										</div>
 									</li>
 									<li>
@@ -373,7 +383,7 @@
 											Writer:
 										</div>
 										<div class="transformers-right">
-											Stephen McFeely, Christopher Markus
+											{{movie.writer}}
 										</div>
 									</li>
 									<li>
@@ -381,7 +391,7 @@
 											Director:
 										</div>
 										<div class="transformers-right">
-											Joe Johnston
+											{{movie.director}}
 										</div>
 									</li>
 									<li>
@@ -389,7 +399,7 @@
 											Time: 
 										</div>
 										<div class="transformers-right">
-											190m
+											{{movie.duration}}
 										</div>
 									</li>
 									<li>
@@ -397,7 +407,7 @@
 											Release:
 										</div>
 										<div class="transformers-right">
-											2018-07-22
+											{{movie.release_date}}
 										</div>
 									</li>
 									<li>
@@ -405,7 +415,7 @@
 											Language:
 										</div>
 										<div class="transformers-right">
-											English, Russian
+											English
 										</div>
 									</li>
 									<li>
@@ -433,11 +443,19 @@
 											<a href="#"><i class="icofont icofont-youtube-play"></i></a>
 										</div>
 									</li>
+									<li>
+										{% if user.role != 'admin' %}
+										<div class="slide-trailor">
+										<div class="loggedUser">
+											<a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a>
+										</div>
+										{% endif %}
+									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<a href="#" class="theme-btn"><i class="icofont icofont-ticket"></i> BUY TICKET</a>
+					
 				</div>
 			</div>
 		</section><!-- transformers area end -->
@@ -449,47 +467,71 @@
 						<div class="details-content">
 							<div class="details-overview">
 								<h2>Overview</h2>
-								<p>Humans are at war with the Transformers, and Optimus Prime is gone. The key to saving the future lies buried in the secrets of the past and the hidden history of Transformers on Earth. Now it's up to the unlikely alliance of inventor Cade Yeager, Bumblebee, a n English lord and an Oxford professor to save the world. Transformers: The Last Knight has a deeper mythos and bigger spectacle than its predecessors, yet still ends up being mostly hollow and cacophonous. The first "Transformers" movie that could actually be characterized as badass. Which isn't a bad thing. It may, in fact, be better.</p>
+								<p>{{movie.description}}</p>
 							</div>
 							<div class="details-reply">
 								<h2>Leave a Reply</h2>
-								<form action="#">
+								<form action="/addComment/{{movie.id}}" method="post">
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="select-container">
-												<input type="text" placeholder="Name"/>
-												<i class="icofont icofont-ui-user"></i>
+												<span>{{user.name}}</span>
 											</div>
 										</div>
 										<div class="col-lg-4">
 											<div class="select-container">
-												<input type="text" placeholder="Email"/>
-												<i class="icofont icofont-envelope"></i>
+												<span>{{user.email}}</span>
 											</div>
 										</div>
-										<div class="col-lg-4">
+										<!-- <div class="col-lg-4">
 											<div class="select-container">
 												<input type="text" placeholder="Phone"/>
 												<i class="icofont icofont-phone"></i>
 											</div>
-										</div>
+										</div> -->
 										<div class="col-lg-12">
 											<div class="textarea-container">
-												<textarea placeholder="Type Here Message"></textarea>
-												<button><i class="icofont icofont-send-mail"></i></button>
+												<textarea placeholder="Type Your Comment" name="comment"></textarea>
+												<button type="submit"><i class="icofont icofont-send-mail"></i></button>
 											</div>
 										</div>
 									</div>
+									<div class="details-comment mt-2">
+										<input type="submit" class="theme-btn theme-btn2" value="Post Comment">
+										<!-- <a class="theme-btn theme-btn2" href="#">Post Comment</a> -->
+									</div>
 								</form>
 							</div>
-							<div class="details-comment">
-								<a class="theme-btn theme-btn2" href="#">Post Comment</a>
-								<p>You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
+							
+							<div class="">
+								<h3>Comments:</h3>
+								<ul>
+									{% for comment in comment_details %}
+											<li>
+												<div class="transformers-left">
+													{{comment.user}}: 
+												</div>
+												<div class="transformers-right bg-light text-dark p-2" style="border-radius: 5px;">
+													<p>{{comment.comment}}</p>
+												</div>
+											</li>
+										
+									{% endfor %}
+									
+									<!-- <li>
+										<div class="transformers-left">
+											Endi Mimini: 
+										</div>
+										<div class="transformers-right bg-light text-dark p-2" style="border-radius: 5px;">
+											<p>You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
+										</div>
+									</li> -->
+								</ul>
 							</div>
 							<div class="details-thumb">
 								<div class="details-thumb-prev">
 									<div class="thumb-icon">
-										<i class="icofont icofont-simple-left"></i>
+										<a href="/movie_detail/{{movie.id - 1}}"><i class="icofont icofont-simple-left"></i></a>
 									</div>
 									<div class="thumb-text">
 										<h4>Previous Post</h4>
@@ -502,19 +544,19 @@
 										<p>Standard Post With Preview Image</p>
 									</div>
 									<div class="thumb-icon">
-										<i class="icofont icofont-simple-right"></i>
+										<a href="/movie_detail/{{movie.id - 1}}"><i class="icofont icofont-simple-right"></i></a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 text-center text-lg-left">
+					<!-- <div class="col-lg-3 text-center text-lg-left">
 					    <div class="portfolio-sidebar">
-							<img src="assets/img/sidebar/sidebar1.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar2.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar4.png" alt="sidebar" />
+							<img src="../static/assets/img/sidebar/sidebar1.png" alt="sidebar" />
+							<img src="../static/assets/img/sidebar/sidebar2.png" alt="sidebar" />
+							<img src="../static/assets/img/sidebar/sidebar4.png" alt="sidebar" />
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section><!-- details area end -->
@@ -524,7 +566,7 @@
 				<div class="row">
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<img src="assets/img/logo.png" alt="about" />
+							<img src="../static/assets/img/logo.png" alt="about" />
 							<p>7th Harley Place, London W1G 8LZ United Kingdom</p>
 							<h6><span>Call us: </span>(+880) 111 222 3456</h6>
 						</div>
@@ -583,19 +625,19 @@
 			</div>
 		</footer><!-- footer section end -->
 		<!-- jquery main JS -->
-		<script src="assets/js/jquery.min.js"></script>
+		<script src="../static/assets/js/jquery.min.js"></script>
 		<!-- Bootstrap JS -->
-		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="../static/assets/js/bootstrap.min.js"></script>
 		<!-- Slick nav JS -->
-		<script src="assets/js/jquery.slicknav.min.js"></script>
+		<script src="../static/assets/js/jquery.slicknav.min.js"></script>
 		<!-- owl carousel JS -->
-		<script src="assets/js/owl.carousel.min.js"></script>
+		<script src="../static/assets/js/owl.carousel.min.js"></script>
 		<!-- Popup JS -->
-		<script src="assets/js/jquery.magnific-popup.min.js"></script>
+		<script src="../static/assets/js/jquery.magnific-popup.min.js"></script>
 		<!-- Isotope JS -->
-		<script src="assets/js/isotope.pkgd.min.js"></script>
+		<script src="../static/assets/js/isotope.pkgd.min.js"></script>
 		<!-- main JS -->
-		<script src="assets/js/main.js"></script>
+		<script src="../static/assets/js/main.js"></script>
 	</body>
 
 </html>

@@ -40,10 +40,10 @@ class User:
         return result
 
     @classmethod
-    def get_by_id(cls,data):
+    def get_by_id(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db_name).query_db(query,data)
-        return cls(results[0])
+        return results[0]
     
     #ELDI
     
@@ -105,6 +105,11 @@ class User:
             celebrities.append(row)
         # print(celebrities)
         return celebrities
+
+    @classmethod
+    def book_tickets(cls, data):
+        query = "INSERT INTO tickets_booked (seat, user_id, movie_id) VALUES (%(seat)s, %(id)s, %(movie_id)s);"
+        return connectToMySQL(cls.db_name).query_db(query, data)
 
     @staticmethod
     def is_valid(user):
