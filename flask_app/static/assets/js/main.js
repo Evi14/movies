@@ -1,4 +1,3 @@
-let form = [];
 (function ($) {
 	"use strict";
 	
@@ -242,29 +241,12 @@ async function book_tickets() {
 		document.getElementById("error").innerHTML =
 		"*Tickets are succesfully booked";
 		setTimeout(location.reload.bind(location), 5000);
-		return form;
 };
 
-function booking(){
-	let form = tickets;
-	let movie_id = document.getElementById('movie').innerHTML;
-	console.log(form);
-	console.log(movie_id);
-	document.getElementById("error").innerHTML = "*Tickets are succesfully booked";
-}
-
-async function getUser(email) {
-    fetch("http://127.0.0.1:5000/getUser")
-        .then((response) => response.json())
-        .then((data) => {
-            for (i = 0; i < data.length; i++) {
-                if (email == data[i]["email"]) {
-                    document.getElementById("emailError").innerHTML = "This email already exists!*";
-                    is_valid = false;
-                } else {
-                    is_valid = true;
-                }
-            }
-        });
-    return is_valid;
-}
+// function booking(){
+// 	let form = tickets;
+// 	let movie_id = document.getElementById('movie').innerHTML;
+// 	console.log(form);
+// 	console.log(movie_id);
+// 	document.getElementById("error").innerHTML = "*Tickets are succesfully booked";
+// }
